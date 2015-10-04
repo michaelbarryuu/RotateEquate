@@ -1,3 +1,3 @@
 RotateEquate
 
-Created by Michael Barry, Michal Gnacek and Luke Donnelly =]
+Created by Michael Barry, Michal Gnacek and Luke Donnelly
