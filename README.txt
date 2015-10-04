@@ -1,1 +1,3 @@
-This is a simple readme doc
+RotateEquate
+
+Created by Michael Barry, Michal Gnacek and Luke Donnelly
