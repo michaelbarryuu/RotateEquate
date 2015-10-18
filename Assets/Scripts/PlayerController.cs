@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(myRigidbody.angularVelocity);
         // Switch between different movement types(To be removed)
         if (TorqueMovement)
             playerMovementTorque();
