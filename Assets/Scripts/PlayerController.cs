@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     // Public variables
     public float TorqueIncrement = 6.0f;
-    public float TorqueDecrementFactor = 4.0f;
+    public float TorqueDecrementFactor = 8.0f;
     public float MaxTorque = 300.0f;
 
     // Private variables
@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void FixedUpdate()
+    {
+        Debug.Log(myRigidbody.angularVelocity);
         // Switch between different movement types(To be removed)
         if (TorqueMovement)
             playerMovementTorque();
@@ -60,13 +66,13 @@ public class PlayerController : MonoBehaviour
             // Otherwise, slowly reduce rotation
             else
             {
-                if (myRigidbody.angularVelocity > 15)
+                if (myRigidbody.angularVelocity > 10)
                 {
                     myRigidbody.angularVelocity -= 5f;
                 }
-                else if (myRigidbody.angularVelocity < -15)
+                else if (myRigidbody.angularVelocity < -10)
                 {
-                    myRigidbody.angularVelocity += 5.5f;
+                    myRigidbody.angularVelocity += 5f;
                 }
                 else
                 {
