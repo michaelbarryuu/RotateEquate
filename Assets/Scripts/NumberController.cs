@@ -6,26 +6,44 @@ public class NumberController : MonoBehaviour
 	
 	// value variables
 	public int value;
-	private int minValue = 1000;
-	private int maxValue = 9999;
+	private int minValue = 1;
+	private int maxValue = 99;
+	
+	public float minScale;
+	public float maxScale;
 
+	//player GameObject
+	private GameObject player;
+	
+	
 	// getter for value
 	public int getValue()
 	{
 		return value;
 	}
+	
+	public int getMinValue()
+	{
+		return minValue;
+	}
+	
+	public int getMaxValue()
+	{
+		return maxValue;
+	}
 
-	//player GameObject
-	private GameObject player;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		// set the value randomly based on the minimum and maximum possible values
 		value = Random.Range(minValue, maxValue);
 
 		//Find the player GameObject
 		player = GameObject.Find("Player");
+		
+		// set the scale of the object based on its value
+		setScale();
 	}
 	
 	
@@ -34,6 +52,20 @@ public class NumberController : MonoBehaviour
 	{
 	
 	}
+
+	
+	// set the scale based on the value
+	void setScale()
+	{
+		Vector3 newScale;
+		
+		float scale = minScale + ((value / (float)maxValue) * (maxScale - minScale));
+		
+		newScale = new Vector3(scale, scale, 1.0f);
+		
+		transform.localScale = newScale;
+	}
+	
 
 	void OnTriggerEnter2D(Collider2D coll){
 

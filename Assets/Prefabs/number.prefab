@@ -84,6 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  minScale: 1
+  maxScale: 1.5
 --- !u!114 &11450852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,8 +109,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
   - {fileID: 21300016, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
   - {fileID: 21300018, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
-  offset: .125
-  created: 0
+  spacing: .125
 --- !u!212 &21229160
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -145,6 +146,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxScale
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spacing
+      value: .125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
