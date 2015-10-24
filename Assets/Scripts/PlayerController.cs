@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -13,31 +13,64 @@ public class PlayerController : MonoBehaviour
     public float TorqueIncrement = 6.0f;
     public float TorqueDecrementFactor = 8.0f;
     public float MaxTorque = 300.0f;
+    public int PlayerStartingValue = 0;
 
     // Private variables
     private Rigidbody2D myRigidbody;
-
+    private int PlayerValue;
+    private int MaxPlayerValue;
+    private int MinPlayerValue;
 
     // Use this for initialization
     void Start()
     {
+        //Store Rigidbody2D component in a variable
         this.myRigidbody = this.GetComponent<Rigidbody2D>();
+
+        //Put PlayerValue(number displayed on the player) to equal the set starting value
+        PlayerValue = PlayerStartingValue;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(PlayerValue);
     }
 
     void FixedUpdate()
     {
         // Switch between different movement types(To be removed)
-        if (TorqueMovement)
+        if (TorqueMovement){
             playerMovementTorque();
+            this.transform.position = new Vector3(0, 0, 0);
+        }
 
         else
             playerMovement();
+    }
+
+
+    int playerValue(){
+        return PlayerValue;
+    }
+
+    public void addPlayerValue(int value){
+        PlayerValue += value;
+    }
+
+
+    public void subtractPlayerValue(int value){
+        PlayerValue -= value;
+    }
+
+
+    public void multiplyPlayerValue(int value){
+        PlayerValue *= value;
+    }
+
+
+    public void dividePlayerValue(int value){
+        PlayerValue /= value;
     }
 
     void playerMovementTorque()
@@ -58,7 +91,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (myRigidbody.angularVelocity < 0)
                     myRigidbody.AddTorque(-TorqueIncrement);
-                else
+                else // If used for slowing down, reduce torque faster
                     myRigidbody.AddTorque(-TorqueIncrement * TorqueDecrementFactor);
             }
 
@@ -83,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Simple transform movement method(to be removed)
     void playerMovement()
     {
         myRigidbody.angularVelocity = 0.0f;
