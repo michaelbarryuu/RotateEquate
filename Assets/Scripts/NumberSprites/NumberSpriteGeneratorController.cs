@@ -38,7 +38,7 @@ public class NumberSpriteGeneratorController : MonoBehaviour
 		char[] numbers = value.ToString().ToCharArray();
 		
 		// store the current position
-		Vector3 newPos = transform.position;
+		Vector3 newPos = parentNumberObj.transform.position;
 		
 		// gameobject to represent new numberSprite
 		GameObject numberSprite;
@@ -47,91 +47,90 @@ public class NumberSpriteGeneratorController : MonoBehaviour
 		if((numbers.Length % 2) == 0)
 		{
 			for(int i = (numbers.Length / 2) - 1; i >= 0; i--)
-			{
-				//decrease the newpos x position by the offset
-				newPos.x -= spacing;
+			{				
+				// instantiate a new numberSprite gameObject
+				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"));
 				
-				//instantiate a new numberSprite gameObject
-				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"), newPos, transform.rotation);
+				// change the position
+				newPos.x -= (spacing + numberSprite.GetComponent<BoxCollider2D>().size.x * 0.66f);
+				numberSprite.transform.position = newPos;
 				
 				numberSprite.transform.parent = gameObject.transform;
 				
-				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.8f;
+				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.9f;
 				
 				numberSprite.GetComponent<NumberSpriteController>().setSprite(numberSpriteArray[(int)char.GetNumericValue(numbers[i])]);
-				
-				newPos.x -= spacing;
 			}
 			
 			// reset the newPos
-			newPos = transform.position;
+			newPos = parentNumberObj.transform.position;
 			
 			for(int i = (numbers.Length / 2); i < numbers.Length; i++)
-			{
-				//decrease the newpos x position by the offset
-				newPos.x += spacing;
-				
+			{				
 				//instantiate a new numberSprite gameObject
-				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"), newPos, transform.rotation);
+				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"));
+				
+				// change the position
+				newPos.x += (spacing + numberSprite.GetComponent<BoxCollider2D>().size.x * 0.66f);
+				numberSprite.transform.position = newPos;
 				
 				numberSprite.transform.parent = gameObject.transform;
 				
-				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.8f;
+				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.9f;
 				
 				numberSprite.GetComponent<NumberSpriteController>().setSprite(numberSpriteArray[(int)char.GetNumericValue(numbers[i])]);
-				
-				newPos.x += spacing;
 			}
 		}
 		// handle an odd amount of numbers
 		else
 		{
-			// reset the newPos
-			newPos = transform.position;
-			
-			// create the center numberSprite first
 			// instantiate a new numberSprite gameObject
-			numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"), newPos, transform.rotation);
+			numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"));
+			
+			// change the position
+			numberSprite.transform.position = newPos;
 			
 			numberSprite.transform.parent = gameObject.transform;
 			
-			numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.8f;
+			numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.9f;
 			
 			numberSprite.GetComponent<NumberSpriteController>().setSprite(numberSpriteArray[(int)char.GetNumericValue(numbers[numbers.Length / 2])]);
-			
+					
 			
 			// numbers left of the center
 			for(int i = (numbers.Length / 2) - 1; i >= 0; i--)
-			{
-				//decrease the newpos x position by the offset
-				newPos.x -= numberSprite.GetComponent<BoxCollider2D>().size.x;
-				
+			{				
 				//instantiate a new numberSprite gameObject
-				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"), newPos, transform.rotation);
+				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"));
+				
+				// change the position
+				newPos.x -= (spacing + numberSprite.GetComponent<BoxCollider2D>().size.x);
+				numberSprite.transform.position = newPos;
 				
 				numberSprite.transform.parent = gameObject.transform;
 				
-				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.8f;
+				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.9f;
 				
 				numberSprite.GetComponent<NumberSpriteController>().setSprite(numberSpriteArray[(int)char.GetNumericValue(numbers[i])]);
 			}
 			
 			// reset the newPos
-			newPos = transform.position;
+			newPos = parentNumberObj.transform.position;
 
 			
 			//numbers right of the center
 			for(int i = (numbers.Length / 2) + 1; i < numbers.Length; i++)
-			{
-				//decrease the newpos x position by the offset
-				newPos.x += numberSprite.GetComponent<BoxCollider2D>().size.x;
-				
+			{				
 				//instantiate a new numberSprite gameObject
 				numberSprite = (GameObject)Instantiate(Resources.Load("Prefabs/NumberSprites/NumberSprite"), newPos, transform.rotation);
 				
+				// change the position
+				newPos.x += (spacing + numberSprite.GetComponent<BoxCollider2D>().size.x);
+				numberSprite.transform.position = newPos;
+				
 				numberSprite.transform.parent = gameObject.transform;
 				
-				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.8f;
+				numberSprite.transform.localScale = parentNumberObj.transform.localScale * 0.9f;
 				
 				numberSprite.GetComponent<NumberSpriteController>().setSprite(numberSpriteArray[(int)char.GetNumericValue(numbers[i])]);
 			}

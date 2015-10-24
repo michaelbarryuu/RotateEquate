@@ -211,6 +211,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11450852, guid: 9537ce44124d14b449720f5d6e88707a, type: 2}
+      propertyPath: spacing
+      value: .125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9537ce44124d14b449720f5d6e88707a, type: 2}
   m_IsPrefabParent: 0
