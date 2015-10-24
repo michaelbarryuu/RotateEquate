@@ -4,59 +4,84 @@ using System.Collections;
 public class NumberController : MonoBehaviour
 {
 	
-	//value variables
+	// value variables
 	public int value;
 	private int minValue = 1;
 	private int maxValue = 99;
 	
-	//array of sprites for numbers
-	public Sprite[] sprites;
+	public float minScale;
+	public float maxScale;
+
+	//player GameObject
+	private GameObject player;
 	
-	//left and right number gameObjects
-	public GameObject leftNum;
-	public GameObject rightNum;
 	
-	//left and right number spriteRenderers and sprites for those renderers
-	private SpriteRenderer leftRenderer;
-	private SpriteRenderer rightRenderer;
-	private Sprite leftSprite;
-	private Sprite rightSprite;
-	
-	// Use this for initialization
-	void Start () 
+	// getter for value
+	public int getValue()
 	{
-		//set the value randomly based on the minimum and maximum possible values
-		value = Random.Range(minValue, maxValue);
-		
-		//set the sprites for the left and right numbers based on the value
-		setNumberSprites();
+		return value;
 	}
+	
+	public int getMinValue()
+	{
+		return minValue;
+	}
+	
+	public int getMaxValue()
+	{
+		return maxValue;
+	}
+
+
+	// Use this for initialization
+	void Awake () 
+	{
+		// set the value randomly based on the minimum and maximum possible values
+		value = Random.Range(minValue, maxValue);
+
+		//Find the player GameObject
+		player = GameObject.Find("Player");
+		
+		// set the scale of the object based on its value
+		setScale();
+	}
+	
 	
 	// Update is called once per frame
 	void Update () 
 	{
 	
 	}
+
 	
-	
-	//method to set the left and right number sprites based on the value
-	private void setNumberSprites()
+	// set the scale based on the value
+	void setScale()
 	{
-		//get the left and right spriteRenderers
-		leftRenderer = leftNum.GetComponent<SpriteRenderer>() as SpriteRenderer;
-		rightRenderer = rightNum.GetComponent<SpriteRenderer>() as SpriteRenderer;
+		Vector3 newScale;
 		
-		//figure out how many 10s and 1s are in the value
-		int leftSpriteIndex = value / 10;
-		int rightSpriteIndex = value % 10;
+		float scale = minScale + ((value / (float)maxValue) * (maxScale - minScale));
 		
-		//get the correct left sprite and set the spriteRenderer sprite to it
-		leftSprite = sprites[leftSpriteIndex];
-		leftRenderer.sprite = leftSprite;
+		newScale = new Vector3(scale, scale, 1.0f);
 		
-		//get the correct right sprite and set the spriteRenderer sprite to it
-		rightSprite = sprites[rightSpriteIndex];
-		rightRenderer.sprite = rightSprite;
+		transform.localScale = newScale;
+	}
+	
+
+	void OnTriggerEnter2D(Collider2D coll){
+
+		//If number collides with player, perform correct action based on the side collided with
+		if(coll.gameObject.tag == "Add"){
+			player.GetComponent<PlayerController>().addPlayerValue(value);
+		}
+		else if(coll.gameObject.tag == "Subtract"){
+			player.GetComponent<PlayerController>().subtractPlayerValue(value);
+		}
+		else if(coll.gameObject.tag == "Multiply"){
+			player.GetComponent<PlayerController>().multiplyPlayerValue(value);
+		}
+		else if(coll.gameObject.tag == "Divide"){
+			player.GetComponent<PlayerController>().dividePlayerValue(value);
+		}
 	}
 	
 }
