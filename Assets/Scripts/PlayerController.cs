@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerValue);
+
     }
 
     void FixedUpdate()
@@ -58,16 +58,13 @@ public class PlayerController : MonoBehaviour
         PlayerValue += value;
     }
 
-
     public void subtractPlayerValue(int value){
         PlayerValue -= value;
     }
 
-
     public void multiplyPlayerValue(int value){
         PlayerValue *= value;
     }
-
 
     public void dividePlayerValue(int value){
         PlayerValue /= value;
