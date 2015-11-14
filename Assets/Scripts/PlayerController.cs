@@ -20,6 +20,14 @@ public class PlayerController : MonoBehaviour
     private int PlayerValue;
     private int MaxPlayerValue;
     private int MinPlayerValue;
+    private NumberSpriteGeneratorController numberSpriteGeneratorController;
+
+	
+	void Awake()
+	{
+		numberSpriteGeneratorController = transform.FindChild("NumberSpriteGenerator").GetComponent<NumberSpriteGeneratorController>();
+	}
+	
 
     // Use this for initialization
     void Start()
@@ -29,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
         //Put PlayerValue(number displayed on the player) to equal the set starting value
         PlayerValue = PlayerStartingValue;
+        
+        numberSpriteGeneratorController.SetValue(PlayerValue);
     }
 
     // Update is called once per frame

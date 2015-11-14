@@ -83,7 +83,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c55b35cbac85547b885cddb8473596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
   numberSpriteArray:
   - {fileID: 21300000, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
   - {fileID: 21300002, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
@@ -95,6 +94,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
   - {fileID: 21300016, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
   - {fileID: 21300018, guid: 183c223ed70c7494cbdb6b76a35f6f16, type: 3}
+  scale: .899999976
   spacing: 0
 --- !u!212 &21249998
 SpriteRenderer:

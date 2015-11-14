@@ -14,6 +14,7 @@ public class NumberController : MonoBehaviour
 
 	//player GameObject
 	private GameObject player;
+	private NumberSpriteGeneratorController numberSpriteGeneratorController;
 	
 	
 	// getter for value
@@ -42,11 +43,19 @@ public class NumberController : MonoBehaviour
 		//Find the player GameObject
 		player = GameObject.Find("Player");
 		
+		numberSpriteGeneratorController = transform.FindChild("NumberSpriteGenerator").GetComponent<NumberSpriteGeneratorController>();
+		
 		// set the scale of the object based on its value
 		setScale();
 	}
 	
 	
+	void Start()
+	{
+		numberSpriteGeneratorController.SetValue(value);
+	}
+	
+			
 	// Update is called once per frame
 	void Update () 
 	{
